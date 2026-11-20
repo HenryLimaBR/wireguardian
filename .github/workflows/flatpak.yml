@@ -1,0 +1,36 @@
+name: Flatpak
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Flatpak tooling
+        run: |
+          sudo -A apt-get update
+          sudo -A apt-get install -y flatpak flatpak-builder appstream-compose
+          flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+          flatpak --user install -y --noninteractive flathub \
+            org.freedesktop.Platform//26.08 \
+            org.freedesktop.Sdk//26.08 \
+            org.freedesktop.Sdk.Extension.rust-stable//26.08
+      - name: Vendor locked Rust dependencies
+        run: cargo vendor --locked vendor > flatpak/cargo-config.toml
+      - name: Build Flatpak
+        run: |
+          flatpak-builder --user --force-clean --repo=repo build-dir flatpak/io.github.HenryLimaBR.WireGuardian.yml
+          flatpak build-bundle repo wireguardian.flatpak io.github.HenryLimaBR.WireGuardian
+      - name: Upload bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: wireguardian-flatpak
+          path: wireguardian.flatpak
+          if-no-files-found: error

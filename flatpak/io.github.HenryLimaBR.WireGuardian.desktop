@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=WireGuardian
+Comment=Manage WireGuard tunnels
+Exec=wireguardian
+Icon=io.github.HenryLimaBR.WireGuardian
+StartupWMClass=io.github.HenryLimaBR.WireGuardian
+Categories=Network;
+Terminal=false

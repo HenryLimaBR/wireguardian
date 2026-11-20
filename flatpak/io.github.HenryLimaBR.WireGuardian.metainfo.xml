@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.HenryLimaBR.WireGuardian</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>WireGuardian</name>
+  <developer id="io.github.henrylimabr">
+    <name>HenryLimaBR</name>
+  </developer>
+  <summary>Manage WireGuard tunnels</summary>
+  <url type="homepage">https://github.com/HenryLimaBR/wireguardian</url>
+  <description>
+    <p>View WireGuard configurations, connect and disconnect tunnels, and monitor their
+    connection status, peers, and transfer statistics.</p>
+  </description>
+  <launchable type="desktop-id">io.github.HenryLimaBR.WireGuardian.desktop</launchable>
+  <content_rating type="oars-1.1"/>
+</component>

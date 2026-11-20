@@ -1,0 +1,7 @@
+/target
+/vendor
+/flatpak/cargo-config.toml
+/.flatpak-builder
+/build-dir
+/repo
+/*.flatpak
